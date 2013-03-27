@@ -3,10 +3,11 @@
 #rtylerlucas@gatech.edu
 #I worked on this hw assignment alone
 #using only class resources
-from myro import*
+
+from graphics import*
 from random import*
 import time
-from math import*
+import math
 
 #The point of this program is to show a nice visual representation/screensaver
 #Of our planets orbiting the sun. Each planet's speed is based to they're comparative
@@ -68,13 +69,13 @@ def orbit():
     starList = []
     planetList = []
     print "Welcome to the Solar Screensaver. Watch as the planets orbit at \n they're realistic comparative speeds.\n "
-    wait(2.5)
+    time.sleep(2.5)
     input = raw_input("How long you would like to watch the planets orbit? \n (It takes approximately 40 seconds for the slowest of planets, Neptune, \n to make a full rotation.)\n Orbital Duration: ")
     
     print "\n"
 
     try:
-        timeV = int(input)
+        timeV = 50*int(input)
     except ValueError:
         
         print "***Please enter a positive integer*** \n."
@@ -82,7 +83,7 @@ def orbit():
             
             
     print "Planets: initiate."
-    wait(2)
+    time.sleep(2)
     myCanvas = GraphWin ("Round n' Round",width,height)
 
     myCanvas.setBackground ("black")
@@ -178,7 +179,7 @@ def orbit():
     neptuneR = 1305
     #All the planets have different radius' thus I had to have different
     #ones incorporated into each of their performance
-    wait(20)
+    time.sleep(20)
     mercury.undraw()
     venus.undraw()
     earth.undraw()
@@ -195,7 +196,7 @@ def orbit():
     # the mathematical formula
 
     
-    while timeRemaining(timeV):
+    while timeV>0:
         mercuryY = (mercuryR * math.sin(mercuryAngle)+ 450)
         mercuryX = (mercuryR * math.cos(mercuryAngle) + 1650)
           
@@ -261,6 +262,8 @@ def orbit():
         uranus.setFill("cyan")
         uranus.draw(myCanvas)
 
+	timeV = timeV-1
+
         
 #When I first animated a single planet, there was no apparent flickering
 #of the planet as it orbited the sun. #However as I added more planets to
@@ -290,7 +293,7 @@ def orbit():
         neptuneAngle = neptuneAngle+ (.03)
 
         
-        wait(.01)
+        time.sleep(.01)
         mercury.undraw()
         venus.undraw()
         earth.undraw()        
